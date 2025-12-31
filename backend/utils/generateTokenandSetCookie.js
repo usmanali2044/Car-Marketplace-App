@@ -13,7 +13,7 @@ export const generateTokenandSetCookie = async (res,userId)=>{
         {
             httpOnly: true, // prevent XSS attack
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "none",
             maxAge: 7*24*60*60*1000
 
         }
