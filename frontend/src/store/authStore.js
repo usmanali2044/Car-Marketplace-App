@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 import axios from 'axios'
-const API_URL = 'http://localhost:3000/api/auth'
+const API_URL = 'https://car-marketplace-app-90q0.onrender.com/api/auth'
 
 axios.defaults.withCredentials = true;
 
