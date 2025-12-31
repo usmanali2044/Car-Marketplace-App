@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/cars';
+const API_URL = 'https://car-marketplace-app-90q0.onrender.com/api/cars';
 axios.defaults.withCredentials = true;
 
 export const useCarStore = create((set) => ({
