@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://car-marketplace-app-frontend.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: true
