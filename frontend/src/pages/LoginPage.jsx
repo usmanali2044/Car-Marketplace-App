@@ -52,7 +52,7 @@ export default function LoginPage() {
 
           
           <div className="text-right">
-            <Link to={""} className="text-sm text-indigo-600 hover:underline">
+            <Link to="/forgot-password" className="text-sm text-indigo-600 hover:underline">
               Forgot Password?
             </Link>
           </div>

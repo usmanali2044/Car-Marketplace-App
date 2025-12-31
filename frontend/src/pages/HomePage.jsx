@@ -8,6 +8,7 @@ export default function HomePage() {
   const { isAuthenticated, user } = useAuthStore();
   const { featuredCars, popularBrands, getFeaturedCars, getPopularBrands, setFilters, getAllCars } = useCarStore();
   const [searchQuery, setSearchQuery] = useState({ brand: '', model: '', location: '' });
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // <-- Mobile menu state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,8 +63,61 @@ export default function HomePage() {
             )}
           </div>
 
-          <div className="md:hidden">
-            <button className="p-2 rounded-lg bg-gray-100">Menu</button>
+          {/* Mobile Menu */}
+          <div className="md:hidden relative">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-lg bg-gray-100"
+            >
+              Menu
+            </button>
+
+            {isMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg flex flex-col z-50">
+                <Link
+                  to="/cars"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Browse Cars
+                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      to="/cars/create"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Sell Your Car
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/signup"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Sign Up
+                    </Link>
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Log In
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </nav>
       </header>
@@ -84,7 +138,6 @@ export default function HomePage() {
               Browse thousands of verified listings, compare prices, schedule test drives and get financing — all from a single beautiful marketplace.
             </p>
 
-         
             <form onSubmit={handleSearch} className="mt-6">
               <div className="flex flex-col md:flex-row gap-3">
                 <div className="flex-1 relative">
@@ -229,7 +282,6 @@ export default function HomePage() {
           )}
         </section>
 
-       
         <section className="mt-20 bg-gradient-to-r from-indigo-600 to-pink-500 rounded-2xl p-8 text-white flex flex-col md:flex-row items-center justify-between">
           <div>
             <h3 className="text-2xl font-bold">Sell your car — reach thousands</h3>
